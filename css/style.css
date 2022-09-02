@@ -1,22 +1,29 @@
 .categories {
+    text-align: center;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-content: space-between;
 }
 .category {
     padding-bottom: 7px;
+}
+.category span {
     cursor: pointer;
+    font-weight: 600;
+    color: #adadad;
 }
 
 /* Responsive */
 @media screen and (max-width: 576px) {
     .categories {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        text-align: left;
     }
 }
 @media screen and (min-width: 576px) {
     .categories {
         grid-template-columns: repeat(3, 1fr);
+        text-align: left;
     }
 }
 @media screen and (min-width: 768px) {
@@ -27,5 +34,6 @@
 @media screen and (min-width: 1200px) {
     .categories {
         grid-template-columns: repeat(8, 1fr);
+        text-align: center;
     }
 }
