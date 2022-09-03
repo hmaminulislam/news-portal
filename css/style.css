@@ -34,7 +34,11 @@
 }
 /* Spinner */
 #spinner {
-    height: 75vh;
+    height: 50vh;
+}
+/* Article not found */
+#article-not-found {
+    height: 40vh;
 }
 /* Responsive */
 @media screen and (max-width: 576px) {

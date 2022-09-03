@@ -20,6 +20,8 @@ const categoryDisplay = (categories) => {
 categoryData();
 
 function articleData(id) {
+    const notFoundMessage = document.getElementById("article-not-found");
+    notFoundMessage.classList.add("d-none")
     toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     fetch(url)
@@ -36,6 +38,11 @@ const articleDisplay = (articles) => {
     }
     else{
         categoryItemFound.innerText = `${articles.length} items found for category`
+    }
+    // Article not found Message 
+    if(articles.length <= 0) {
+        const notFoundMessage = document.getElementById("article-not-found");
+        notFoundMessage.classList.remove("d-none")
     }
     // Article display 
     console.log(articles)
@@ -96,4 +103,9 @@ const toggleSpinner = (isSpinner) => {
         spinner.classList.add("d-none")
     }
 }
+// Article not found 
+// const articleNotFound = () => {
+//     const notFoundMessage = document.getElementById("article-not-found");
+//     if()
+// }
 articleData(01)
