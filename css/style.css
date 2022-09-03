@@ -12,7 +12,21 @@
     font-weight: 600;
     color: #adadad;
 }
-
+#categoy-found-container {
+    background-color: #efefef;
+}
+#category-item-found {
+    color: #363636;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+.card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 /* Responsive */
 @media screen and (max-width: 576px) {
     .categories {
