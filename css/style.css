@@ -40,6 +40,10 @@
 #article-not-found {
     height: 40vh;
 }
+/* Modal */
+.modal-img {
+    height: 300px;
+}
 /* Responsive */
 @media screen and (max-width: 576px) {
     .categories {
