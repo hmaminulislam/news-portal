@@ -125,8 +125,8 @@ const articleDetailsDisplay = (article) => {
     modalBody.innerHTML = `
     <div class="text-center">
         <img class="img-fluid w-75 mx-auto modal-img" src="${thumbnail_url}">
+        <p class="card-text my-3 w-75 mx-auto">${details ? details : "n/a"}</p>
     </div>
-    <p class="card-text mt-3">${details ? details : "n/a"}</p>
     <div class="row align-items-center">
         <div class="col-6 text-center">
             <img class="author-img" src="${img}">
