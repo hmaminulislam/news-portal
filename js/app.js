@@ -20,6 +20,7 @@ const categoryDisplay = (categories) => {
 categoryData();
 
 function articleData(id) {
+    toggleSpinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     fetch(url)
     .then(res => res.json())
@@ -38,6 +39,7 @@ const articleDisplay = (articles) => {
     }
     // Article display 
     console.log(articles)
+    toggleSpinner(false)
     const articleContainer = document.getElementById("article-containe");
     articleContainer.textContent = '';
     articles.forEach(article => {
@@ -47,33 +49,33 @@ const articleDisplay = (articles) => {
         articleRow.classList.add("row", "mt-5", "border", "rounded", "py-3");
         articleRow.innerHTML = `
         <div class="col-md-4">
-            <img src=${image_url} class="img-fluid" alt="...">
+            <img src=${image_url} class="img-fluid h-100" alt="...">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 py-3">
             <div class="card-body">
                 <h4 class="card-title">${title}</h4>
                 <p class="card-text mt-3">${details}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                    <div class="d-flex align-items-center mb-sm-0 mb-4">
                         <img class="author-img" src=${img}>
                         <div class="ms-3">
                             <p class="mb-1 fw-semibold">${name}</p>
                             <span>${published_date}</span>
                         </div>
                     </div>
-                    <div>
+                    <div class="mb-sm-0 mb-4">
                         <i class="fa-regular fa-eye"></i>
                         <span class="fw-semibold">${total_view}M</span>
                     </div>
-                    <div>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                    <div class="mb-sm-0 mb-4">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star-half-stroke"></i>
                         <span class="fw-semibold">${rating.number}</span>
                     </div>
-                    <div>
+                    <div class="mb-sm-0 mb-4">
                         <button class="btn btn-info text-light">Details</button>
                     </div>
                 </div>
@@ -84,4 +86,14 @@ const articleDisplay = (articles) => {
     })
 }
 
+// Spinner 
+const toggleSpinner = (isSpinner) => {
+    const spinner = document.getElementById("spinner")
+    if(isSpinner) {
+        spinner.classList.remove("d-none")
+    }
+    else {
+        spinner.classList.add("d-none")
+    }
+}
 articleData(01)

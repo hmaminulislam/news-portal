@@ -32,6 +32,10 @@
     width: 50px;
     border-radius: 50%;
 }
+/* Spinner */
+#spinner {
+    height: 75vh;
+}
 /* Responsive */
 @media screen and (max-width: 576px) {
     .categories {
