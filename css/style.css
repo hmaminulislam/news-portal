@@ -1,3 +1,4 @@
+/* Categories  */
 .categories {
     text-align: center;
     display: grid;
@@ -21,6 +22,7 @@
     font-weight: 500;
     margin-left: 12px;
 }
+/* Article card */
 .card-text {
     overflow: hidden;
     display: -webkit-box;

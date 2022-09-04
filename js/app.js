@@ -1,3 +1,4 @@
+// Categories data 
 const categoryData = () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     fetch(url)
@@ -19,6 +20,7 @@ const categoryDisplay = (categories) => {
 }
 categoryData();
 
+// Article data 
 function articleData(id) {
     const notFoundMessage = document.getElementById("article-not-found");
     notFoundMessage.classList.add("d-none")
@@ -31,26 +33,30 @@ function articleData(id) {
 }
 // Article display 
 const articleDisplay = (articles) => {
+    // sort by view 
+   const sortArticles = articles.sort(function(a, b){
+        return b.total_view - a.total_view
+    })
     // Previous Article clear 
     const articleContainer = document.getElementById("article-containe");
     articleContainer.textContent = '';
     // category item found display 
     const categoryItemFound = document.getElementById("category-item-found");
-    if(articles.length <= 0) {
+    if(sortArticles.length <= 0) {
         categoryItemFound.innerText = `Not Available`
     }
     else{
-        categoryItemFound.innerText = `${articles.length} items found for category`
+        categoryItemFound.innerText = `${sortArticles.length} items found for category`
     }
     // Article not found Message 
-    if(articles.length <= 0) {
+    if(sortArticles.length <= 0) {
         toggleSpinner(false)
         const notFoundMessage = document.getElementById("article-not-found");
         notFoundMessage.classList.remove("d-none")
     }
     else {
         toggleSpinner(false)
-        articles.forEach(article => {
+        sortArticles.forEach(article => {
         const {image_url, title, details, author, rating, total_view, _id} = article;
         const {name, img, published_date} = author;
         const articleRow = document.createElement("div");
@@ -61,19 +67,19 @@ const articleDisplay = (articles) => {
         </div>
         <div class="col-md-8 py-3">
             <div class="card-body">
-                <h4 class="card-title">${title ? title : "n/a"}</h4>
-                <p class="card-text mt-3">${details ? details : "n/a"}</p>
+                <h4 class="card-title">${title ? title : "Not found"}</h4>
+                <p class="card-text mt-3">${details ? details : "Not found"}</p>
                 <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
                     <div class="d-flex align-items-center mb-sm-0 mb-4">
                         <img class="author-img" src=${img}>
                         <div class="ms-3">
-                            <p class="mb-1 fw-semibold">${name ? name : "n/a"}</p>
-                            <span>${published_date ? published_date : "n/a"}</span>
+                            <p class="mb-1 fw-semibold">${name ? name : "Not found"}</p>
+                            <span>${published_date ? published_date : "Not found"}</span>
                         </div>
                     </div>
                     <div class="mb-sm-0 mb-4">
                         <i class="fa-regular fa-eye"></i>
-                        <span class="fw-semibold">${total_view ? total_view: "n/a "}M</span>
+                        <span class="fw-semibold">${total_view ? total_view : "Not found"} M</span>
                     </div>
                     <div class="mb-sm-0 mb-4">
                         <i class="fa-solid fa-star"></i>
@@ -81,7 +87,7 @@ const articleDisplay = (articles) => {
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star-half-stroke"></i>
-                        <span class="fw-semibold">${rating.number ? rating.number : "n/a"}</span>
+                        <span class="fw-semibold">${rating.number ? rating.number : "Not found"}</span>
                     </div>
                     <div class="mb-sm-0 mb-4">
                         <button onclick="articleDetailsData('${_id}')" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -116,7 +122,6 @@ const articleDetailsData = (id) => {
 
 // Article Details Modal display
 const articleDetailsDisplay = (article) => {
-    console.log(article);
     const {thumbnail_url, title, details, author, rating, total_view, _id} = article;
     const {name, img} = author;
     const modalTitle = document.getElementById("exampleModalLabel");
@@ -125,16 +130,16 @@ const articleDetailsDisplay = (article) => {
     modalBody.innerHTML = `
     <div class="text-center">
         <img class="img-fluid w-75 mx-auto modal-img" src="${thumbnail_url}">
-        <p class="card-text my-3 w-75 mx-auto">${details ? details : "n/a"}</p>
+        <p class="card-text my-3 w-75 mx-auto">${details ? details : "Not found"}</p>
     </div>
     <div class="row align-items-center">
         <div class="col-6 text-center">
             <img class="author-img" src="${img}">
-            <p class="mb-1 fw-semibold">${name ? name : "n/a"}</p>
+            <p class="mb-1 fw-semibold">${name ? name : "Not found"}</p>
         </div>
         <div class="col-6 text-center">
             <i class="fa-regular fa-eye"></i>
-            <span class="fw-semibold">${total_view ? total_view: "n/a "}M</span>
+            <span class="fw-semibold">${total_view ? total_view : "Not found"} M</span>
         </div>
     </div>
     `
